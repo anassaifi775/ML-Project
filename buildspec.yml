@@ -1,0 +1,48 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo "Installing pip..."
+      - pip install --upgrade pip
+      
+  pre_build:
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt
+      
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - echo "Creating artifacts directory..."
+      - mkdir -p artifacts
+      - echo "Build completed successfully"
+      
+  post_build:
+    commands:
+      - echo "Build finished on `date`"
+
+artifacts:
+  files:
+    - '**/*'
+  name: ApplicationArtifact
+```
+
+5. **Save the file** (Cmd+S or Ctrl+S)
+
+### Step 2: Verify File Location
+
+Your file structure should look like this:
+```
+ML-Project/                    ← Root directory
+├── buildspec.yml             ← CREATE THIS FILE HERE!
+├── requirements.txt          
+├── app.py                    
+├── src/
+│   ├── components/
+│   ├── pipeline/
+│   └── utils.py
+├── artifacts/
+└── templates/
